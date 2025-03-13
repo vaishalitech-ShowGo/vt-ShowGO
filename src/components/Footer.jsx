@@ -36,7 +36,6 @@ const Footer = () => {
           <p className="flex items-center gap-2">📍 Central Park, New York</p>
         </div>
 
-
         {/* Quick Links Section */}
         <div className="flex flex-col gap-2 w-1/5">
           <h3 className="text-lg font-semibold min-h-[40px]">Quick Links</h3>
@@ -79,9 +78,13 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="px-4 py-2 bg-gray-800 text-white rounded-l-md outline-none"
+              className="px-4 py-2 bg-[#27272A] text-white rounded-[12px] outline-none"
+              style={{ padding: "7px" }}
             />
-            <button className="bg-white text-black rounded-r-md cursor-pointer px-4">
+            <button
+              className="bg-white text-black rounded-[12px] cursor-pointer text-[15px]"
+              style={{ padding: "7px", marginLeft:"8px" }}
+            >
               Subscribe
             </button>
           </div>
@@ -89,8 +92,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Text */}
-      <div className="text-center border-t border-gray-600 text-gray-400 text-sm mt-5 pt-3">
-        © 2024 Summer Music Festival. All rights reserved. <br />© 2025 ShowGo.
+      <div className="text-center border-t border-gray-600 text-gray-400 text-sm">
+      © 2025 ShowGo.
       </div>
     </footer>
   );

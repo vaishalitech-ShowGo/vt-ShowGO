@@ -133,16 +133,32 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="min-h-screen bg-black flex items-center justify-around gap-12">
+      <div className="min-h-screen bg-black flex items-center justify-around gap-20">
         <div>
           <h1
             className="text-white text-3xl"
-            style={{ marginTop: "450px", marginBottom: "45px" }}
+            style={{
+              marginTop: "450px",
+              marginBottom: "10px",
+              marginLeft: "70px",
+            }}
           >
-            Last-minute change? <br /> No problem! <br /> Easily transfer your{" "}
+            Last-minute change? <br /> No problem! <br /> Easily transfer your
             <br /> ticket to a friend!"
           </h1>
-          <button className="text-white text-2xl">Explore</button>
+          <button
+            className="bg-white text-black text-xl font-medium rounded-full shadow-md"
+            style={{
+              marginLeft: "70px",
+              letterSpacing: "3px",
+              paddingLeft: "12px",
+              paddingRight: "12px",
+              paddingTop: "4px",
+              paddingBottom: "4px",
+            }}
+          >
+            Explore
+          </button>
         </div>
         <img
           src={InterectiveGallery}
@@ -151,8 +167,13 @@ const Home = () => {
         />
       </div>
 
-      <div className="min-h-screen bg-black flex items-center justify-around gap-12">
-        <img src={ShareYourWork} alt="" className="w-[671px] h-[676px]" />
+      <div className="min-h-screen bg-black flex items-center justify-center gap-50">
+        <img
+          src={ShareYourWork}
+          alt=""
+          className="w-[671px] h-[676px]"
+          style={{ marginLeft: "40px" }}
+        />
         <div>
           <h1
             className="w-[439px] h-[141.1px] text-3xl text-white"
@@ -160,7 +181,18 @@ const Home = () => {
           >
             Can't make it? Sell your <br /> tickets quickly and <br /> securely.
           </h1>
-          <button className="text-2xl text-white">Explore</button>
+          <button
+            className="bg-white text-black text-xl font-medium rounded-full shadow-md"
+            style={{
+              letterSpacing: "3px",
+              paddingLeft: "12px",
+              paddingRight: "12px",
+              paddingTop: "4px",
+              paddingBottom: "4px",
+            }}
+          >
+            Explore
+          </button>
         </div>
       </div>
 
@@ -169,20 +201,32 @@ const Home = () => {
           <h1
             className="w-[387.62px] h-[201.17px] text-white text-3xl"
             style={{
-              marginTop: "200px",
-              marginBottom: "45px",
+              marginTop: "330px",
+              marginBottom: "55px",
               marginLeft: "280px",
             }}
           >
             Book together, stay <br /> connected, and chat <br /> with your
             friends. <br />
-            <button className="bg-white text-black">Explore</button>
+            <button
+              className="bg-white text-black text-xl font-medium rounded-full shadow-md"
+              style={{
+                letterSpacing: "3px",
+                paddingLeft: "12px",
+                marginTop: "30px",
+                paddingRight: "12px",
+                paddingTop: "4px",
+                paddingBottom: "4px",
+              }}
+            >
+              Explore
+            </button>
           </h1>
         </div>
         <img src={GlideRemix} alt="" className="w-[720px] h-[646px]" />
       </div>
 
-        <Footer />
+      <Footer />
     </>
   );
 };

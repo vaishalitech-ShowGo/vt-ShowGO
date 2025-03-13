@@ -27,10 +27,11 @@ const Events = () => {
             FROM: <span className="text-[#09FF67]">Rs. 5000</span>
           </h1>
 
-          <div className="flex items-center gap-4 mt-4">
+          <div className="flex items-center gap-4">
             <Link to="/event-details">
-              <button className="bg-white text-black w-[437px] h-[57px] text-[20px] font-semibold rounded-[25px] cursor-pointer">
-
+              <button
+                className="bg-white text-black w-[437px] h-[57px] text-[20px] font-semibold rounded-[25px] cursor-pointer"
+              >
                 Buy Now
               </button>
             </Link>
