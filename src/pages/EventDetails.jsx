@@ -4,12 +4,17 @@ import Mapp from "../assets/Map1.png";
 import VenueDetails from "../assets/VenueDetails.png";
 import Footer from "../components/Footer";
 import HeartNShare from "../assets/HeartNShare.png";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "../redux/CartSlice";
 
 const EventDetails = () => {
+  const dispatch = useDispatch();
+  const quantity = useSelector((state) => state.cart.quantity);
+
   return (
     <>
       <div
-        className=" bg-black flex items-center justify-center"
+        className="bg-black flex items-center justify-center"
         style={{ padding: "40px" }}
       >
         <div className="flex items-start justify-around max-w-[1200px] w-full">
@@ -47,7 +52,7 @@ const EventDetails = () => {
               </span>
             </div>
 
-            {/* Quantity & Button Section */}
+            {/* Step 5: Quantity & Button Section (Updated with Redux) */}
             <div
               className="flex items-center gap-4"
               style={{ marginTop: "12px" }}
@@ -60,6 +65,7 @@ const EventDetails = () => {
                 <button
                   className="text-[20px]"
                   style={{ paddingBottom: "5px", paddingLeft: "8px" }}
+                  onClick={() => dispatch(decrement())} // Dispatch decrement action
                 >
                   -
                 </button>
@@ -67,11 +73,16 @@ const EventDetails = () => {
                   className="mx-4 text-[18px]"
                   style={{ paddingLeft: "25px" }}
                 >
-                  1
+                  {quantity}
                 </span>
                 <button
                   className="text-[20px] px-2"
-                  style={{ paddingBottom: "5px", paddingLeft: "25px", paddingRight: "8px" }}
+                  style={{
+                    paddingBottom: "5px",
+                    paddingLeft: "25px",
+                    paddingRight: "8px",
+                  }}
+                  onClick={() => dispatch(increment())} // Dispatch increment action
                 >
                   +
                 </button>
@@ -103,7 +114,7 @@ const EventDetails = () => {
                 style={{ padding: "8px 14px" }}
               >
                 <span>Subtotal</span>
-                <span>$299.99</span>
+                <span>INR {quantity * 299.99}</span>
               </div>
               <div
                 className="flex justify-between text-[16px] text-yellow-400 mt-2"
@@ -117,7 +128,7 @@ const EventDetails = () => {
                 style={{ padding: "14px" }}
               >
                 <span>Total Amount</span>
-                <span>$374.99</span>
+                <span>INR {(quantity * 299.99 + 75).toFixed(2)}</span>
               </div>
             </div>
 
@@ -143,6 +154,7 @@ const EventDetails = () => {
         </div>
       </div>
 
+      {/* Venue Details */}
       <div
         className="bg-black text-white flex justify-around"
         style={{ paddingTop: "45px" }}
@@ -156,6 +168,7 @@ const EventDetails = () => {
         <img className="h-[346.22px] w-[676px]" src={Mapp} alt="" />
       </div>
 
+      {/* Terms & Conditions */}
       <div className="bg-black">
         <div style={{ paddingTop: "82px", paddingLeft: "180px" }}>
           <h3 className="text-[22px] font-semibold text-white">
@@ -169,8 +182,7 @@ const EventDetails = () => {
             <li>
               In case of event cancellation, Bash would be responsible to issue
               refunds only if payouts have not been released to the event
-              organiser before the cancellation was <br />
-              communicated.
+              organiser before the cancellation was communicated.
             </li>
             <li>
               Additionally, Bash shall not be held liable or responsible for any
@@ -180,27 +192,6 @@ const EventDetails = () => {
             <li>
               Your ticket allows only “Single Entry Per Day”. Tickets are
               non-cancelable, non-refundable and non-transferable.
-            </li>
-            <li>
-              21+ Government Issued Identification is needed for entry (physical
-              ID of driver's license or Aadhar Card).
-            </li>
-            <li>Our dress code is smart/casual strictly.</li>
-            <li>
-              Management reserves the right to refuse entry in accordance with
-              licensing law.
-            </li>
-            <li>Consumption of illegal substances is strictly prohibited.</li>
-            <li>
-              The management reserves the exclusive right without refund or
-              other recourse, to refuse admission to anyone who is found to be
-              in breach of these terms and <br /> conditions including, if
-              necessary, ejecting the holder/s of the ticket from the venue
-              after they have entered the premises.
-            </li>
-            <li>
-              These terms and conditions are subject to change from time to time
-              at the discretion of the organizer. Venue rules apply.
             </li>
           </ul>
         </div>
