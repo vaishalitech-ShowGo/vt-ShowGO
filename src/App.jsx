@@ -5,7 +5,7 @@ import Events from "./pages/Events";
 import About from "./pages/About";
 import Contact from "./pages/Contact";  
 import AccountDelete from "./pages/AccountDelete"
-import GetStarted from "./pages/GetStarted";
+
 import EventDetails from "./pages/EventDetails"
 
 function App() {
@@ -21,7 +21,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/account-delete" element={<AccountDelete />} />
           <Route path="/event-details" element={<EventDetails />} />
-          <Route path="/get-started" element={<GetStarted />} />
         </Routes>
       </div>
     </div>

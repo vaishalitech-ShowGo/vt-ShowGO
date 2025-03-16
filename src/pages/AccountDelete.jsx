@@ -4,17 +4,20 @@ import Footer from "../components/Footer";
 const AccountDelete = () => {
   return (
     <>
-      <div className="min-h-[648px] flex items-center justify-center bg-black text-white">
+      <div className="min-h-[648px] flex flex-col items-center justify-center bg-black text-white px-4">
         <div
-          className="bg-gray-900 rounded-md w-full max-w-md"
-          style={{ padding: "30px", textAlign: "center" }}
+          className="bg-gray-900 rounded-md w-full max-w-md min-w-0 flex flex-col items-center text-center"
+          style={{ padding: "24px" }}
         >
           {/* Title */}
-          <h1 className="text-xl font-bold" style={{ paddingBottom: "10px" }}>
+          <h1
+            className="text-lg font-bold md:text-xl"
+            style={{ paddingBottom: "8px" }}
+          >
             Account Deletion Request
           </h1>
           <p
-            className="text-gray-400 text-sm mt-2"
+            className="text-gray-400 text-sm md:text-base mt-2"
             style={{ paddingBottom: "10px" }}
           >
             We're sorry to see you go. Please fill out this form to request
@@ -22,16 +25,18 @@ const AccountDelete = () => {
           </p>
 
           {/* Form */}
-          <form className="flex flex-col gap-4 mt-4">
+          <form className="flex flex-col gap-3 mt-4 w-full">
             {/* Full Name */}
-            <div className="text-left">
-              <label className="text-gray-400 text-sm">Full Name</label>
+            <div className="text-left w-full">
+              <label className="text-gray-400 text-xs md:text-sm">
+                Full Name
+              </label>
               <input
                 type="text"
                 placeholder="Enter your full name"
-                className="w-full mt-1 rounded text-white focus:outline-none"
+                className="w-full mt-1 rounded text-white focus:outline-none text-sm"
                 style={{
-                  padding: "7px",
+                  padding: "6px",
                   backgroundColor: "#0f0f0f",
                   border: "1px solid #333",
                 }}
@@ -39,14 +44,16 @@ const AccountDelete = () => {
             </div>
 
             {/* Email Address */}
-            <div className="text-left">
-              <label className="text-gray-400 text-sm">Email Address</label>
+            <div className="text-left w-full">
+              <label className="text-gray-400 text-xs md:text-sm">
+                Email Address
+              </label>
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="w-full mt-1 rounded text-white focus:outline-none"
+                className="w-full mt-1 rounded text-white focus:outline-none text-sm"
                 style={{
-                  padding: "7px",
+                  padding: "6px",
                   backgroundColor: "#0f0f0f",
                   border: "1px solid #333",
                 }}
@@ -54,14 +61,16 @@ const AccountDelete = () => {
             </div>
 
             {/* User ID */}
-            <div className="text-left">
-              <label className="text-gray-400 text-sm">User ID</label>
+            <div className="text-left w-full">
+              <label className="text-gray-400 text-xs md:text-sm">
+                User ID
+              </label>
               <input
                 type="text"
                 placeholder="Enter your User ID"
-                className="w-full mt-1 rounded text-white focus:outline-none"
+                className="w-full mt-1 rounded text-white focus:outline-none text-sm"
                 style={{
-                  padding: "7px",
+                  padding: "6px",
                   backgroundColor: "#0f0f0f",
                   border: "1px solid #333",
                 }}
@@ -69,16 +78,16 @@ const AccountDelete = () => {
             </div>
 
             {/* Reason for Deletion */}
-            <div className="text-left">
-              <label className="text-gray-400 text-sm">
+            <div className="text-left w-full">
+              <label className="text-gray-400 text-xs md:text-sm">
                 Reason for Deletion
               </label>
               <textarea
                 rows="4"
                 placeholder="Please tell us why you want to delete your account..."
-                className="w-full mt-1 rounded text-white focus:outline-none"
+                className="w-full mt-1 rounded text-white focus:outline-none text-sm"
                 style={{
-                  padding: "12px",
+                  padding: "10px",
                   backgroundColor: "#0f0f0f",
                   border: "1px solid #333",
                 }}
@@ -87,10 +96,10 @@ const AccountDelete = () => {
 
             {/* Submit Button */}
             <button
-              className="w-full bg-white text-black py-3 rounded-full font-medium flex items-center justify-center gap-2 mt-3"
-              style={{ padding: "8px" }}
+              className="w-full bg-white text-black py-2 rounded-full font-medium flex items-center justify-center gap-2 mt-3 text-sm"
+              style={{ padding: "6px" }}
             >
-              <FiSend size={20} /> Send Request
+              <FiSend size={18} /> Send Request
             </button>
           </form>
         </div>

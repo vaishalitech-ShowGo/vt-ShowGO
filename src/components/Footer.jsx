@@ -5,16 +5,13 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="min-h-[300px] w-full bg-black text-white">
+      {/* Container for all sections in a row */}
       <div
-        className="container mx-auto flex flex-wrap justify-around lg:flex-nowrap gap-8 h-[344px] pt-10"
-        style={{
-          paddingLeft: "70px",
-          paddingRight: "60px",
-          paddingTop: "140px",
-        }}
+        className="container mx-auto flex flex-wrap justify-between items-start gap-8 pt-10 px-6 md:px-12 lg:px-16"
+        style={{ paddingTop: "140px" }}
       >
         {/* Contact Section */}
-        <div className="flex flex-col gap-4 w-1/5">
+        <div className="flex flex-col gap-4 w-[18%] min-w-[180px]">
           <Link
             to="/contact"
             className="text-lg font-semibold min-h-[40px] hover:underline"
@@ -37,7 +34,7 @@ const Footer = () => {
         </div>
 
         {/* Quick Links Section */}
-        <div className="flex flex-col gap-2 w-1/5">
+        <div className="flex flex-col gap-2 w-[18%] min-w-[180px]">
           <h3 className="text-lg font-semibold min-h-[40px]">Quick Links</h3>
           <a href="/about" className="hover:underline">
             About Us
@@ -53,8 +50,8 @@ const Footer = () => {
           </a>
         </div>
 
-        {/* Account */}
-        <div className="flex flex-col gap-3 w-1/5">
+        {/* Account Section */}
+        <div className="flex flex-col gap-3 w-[18%] min-w-[180px]">
           <h3 className="text-lg font-semibold min-h-[40px]">Account</h3>
           <Link to="/account-delete" className="hover:underline">
             Request Account <br /> Deletion
@@ -62,7 +59,7 @@ const Footer = () => {
         </div>
 
         {/* Follow Us Section */}
-        <div className="flex flex-col gap-3 w-1/5">
+        <div className="flex flex-col gap-3 w-[18%] min-w-[180px]">
           <h3 className="text-lg font-semibold min-h-[40px]">Follow Us</h3>
           <div className="flex gap-3">
             <FaFacebookF className="cursor-pointer hover:text-gray-400" />
@@ -70,21 +67,18 @@ const Footer = () => {
             <FaInstagram className="cursor-pointer hover:text-gray-400" />
           </div>
         </div>
+
         {/* Newsletter Section */}
-        <div className="flex flex-col gap-3 w-1/5">
+        <div className="flex flex-col gap-3 w-[18%] min-w-[180px]">
           <h3 className="text-lg font-semibold min-h-[40px]">Newsletter</h3>
           <p>Stay updated with our latest events</p>
-          <div className="flex">
+          <div className="flex flex-wrap gap-2">
             <input
               type="email"
               placeholder="Enter your email"
-              className="px-4 py-2 bg-[#27272A] text-white rounded-[12px] outline-none"
-              style={{ padding: "7px" }}
+              className="px-4 py-2 bg-[#27272A] text-white rounded-[12px] outline-none w-full md:w-auto"
             />
-            <button
-              className="bg-white text-black rounded-[12px] cursor-pointer text-[15px]"
-              style={{ padding: "7px", marginLeft:"8px" }}
-            >
+            <button className="bg-white text-black rounded-[12px] cursor-pointer text-[15px] px-4 py-2">
               Subscribe
             </button>
           </div>
@@ -92,8 +86,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Text */}
-      <div className="text-center border-t border-gray-600 text-gray-400 text-sm">
-      © 2025 ShowGo.
+      <div className="text-center border-t border-gray-600 text-gray-400 text-sm py-4">
+        © 2025 ShowGo.
       </div>
     </footer>
   );
