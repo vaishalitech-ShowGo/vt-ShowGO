@@ -112,13 +112,13 @@ const Home = () => {
       </div>
 
       <div className="bg-black w-full px-4 md:px-12 py-8">
-        {/* Heading - Always Left Aligned */}
         <h1
           className="
-      text-white font-inter font-[400] text-[24px] leading-[28px] tracking-[0.17em]
+      text-white font-inter font-[400] text-[24px] leading-[38px] tracking-[0.17em]
       sm:text-[28px] sm:leading-[30px]
       md:text-[32px] md:leading-[32px] mb-6
     "
+          style={{ paddingLeft: "50px", paddingBottom: "30px", paddingTop:"20px"}}
         >
           Trending Events:
         </h1>
@@ -126,7 +126,7 @@ const Home = () => {
         {/* Event Posters - Always in One Row on Desktop */}
         <div
           className="
-      flex flex-wrap md:flex-nowrap justify-center md:justify-start items-center
+      flex flex-wrap md:flex-nowrap justify-center md:justify-center items-center
       gap-6 w-full
     "
         >
@@ -159,12 +159,23 @@ const Home = () => {
           <div className="text-center md:text-left">
             <h1
               className="text-white text-2xl sm:text-3xl leading-snug"
-              style={{ marginBottom: "10px" }}
+              style={{
+                paddingTop: "380px",
+                paddingLeft: "100px",
+                marginBottom: "10px",
+              }}
             >
               Last-minute change? <br /> No problem! <br /> Easily transfer your{" "}
               <br /> ticket to a friend!
             </h1>
-            <button className="bg-white text-black text-lg sm:text-xl font-medium rounded-full shadow-md px-5 py-2 tracking-[3px]">
+            <button
+              className="bg-white text-black text-lg sm:text-xl font-medium rounded-full shadow-md px-5 py-2 tracking-[3px]"
+              style={{
+                marginLeft: "100px",
+                padding: "4px",
+                paddingLeft: "9px",
+              }}
+            >
               Explore
             </button>
           </div>
@@ -183,11 +194,20 @@ const Home = () => {
             className="w-[90%] max-w-[671px] h-auto"
           />
           <div className="text-center md:text-left">
-            <h1 className="text-white text-2xl sm:text-3xl leading-snug mb-4">
+            <h1
+              className="text-white text-2xl sm:text-3xl leading-snug mb-4"
+              style={{ paddingBottom: "20px" }}
+            >
               Can't make it? Sell your <br /> tickets quickly and <br />{" "}
               securely.
             </h1>
-            <button className="bg-white text-black text-lg sm:text-xl font-medium rounded-full shadow-md px-5 py-2 tracking-[3px]">
+            <button
+              className="bg-white text-black text-lg sm:text-xl font-medium rounded-full shadow-md px-5 py-2 tracking-[3px]"
+              style={{
+                padding: "4px",
+                paddingLeft: "9px",
+              }}
+            >
               Explore
             </button>
           </div>
@@ -196,11 +216,25 @@ const Home = () => {
         {/* Section 3 */}
         <div className="min-h-screen flex flex-col md:flex-row items-center justify-around gap-10 md:gap-20 px-6 md:px-12">
           <div className="text-center md:text-left">
-            <h1 className="text-white text-2xl sm:text-3xl leading-snug mb-4">
+            <h1
+              className="text-white text-xl sm:text-3xl leading-snug"
+              style={{
+                paddingTop: "380px",
+                paddingLeft: "100px",
+                marginBottom: "30px",
+              }}
+            >
               Book together, stay <br /> connected, and chat <br /> with your
               friends.
             </h1>
-            <button className="bg-white text-black text-lg sm:text-xl font-medium rounded-full shadow-md px-5 py-2 tracking-[3px]">
+            <button
+              className="bg-white text-black text-lg sm:text-xl font-medium rounded-full shadow-md px-5 py-2 tracking-[3px]"
+              style={{
+                marginLeft: "100px",
+                padding: "4px",
+                paddingLeft: "9px",
+              }}
+            >
               Explore
             </button>
           </div>

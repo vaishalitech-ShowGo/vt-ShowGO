@@ -1,7 +1,7 @@
 import EventsImage1 from "../assets/events1.png";
 import EventsImage2 from "../assets/events2.png";
 import EventsImage3 from "../assets/events3.png";
-import HeartNShare from "../assets/HeartNShare.png";
+import { FaHeart, FaShareAlt } from "react-icons/fa"; // Importing icons
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
@@ -11,7 +11,7 @@ const Events = () => {
       {[EventsImage1, EventsImage2, EventsImage3].map((eventImage, index) => (
         <div
           key={index}
-          className="min-h-[550px] bg-black flex flex-wrap md:flex-nowrap items-center justify-center gap-10 px-6 md:px-12 lg:px-16 py-10"
+          className="min-h-[550px] bg-black flex flex-wrap md:flex-nowrap items-center justify-center gap-20 px-6 md:px-12 lg:px-16" style={{paddingBottom:"30px", paddingTop:"30px"}}
         >
           {/* Image Section */}
           <img
@@ -36,19 +36,22 @@ const Events = () => {
               FROM: <span className="text-[#09FF67]">Rs. 5000</span>
             </h1>
 
-            {/* Buttons */}
+            {/* Buttons and Icons */}
             <div className="flex flex-wrap justify-center md:justify-start items-center gap-4">
               <Link to="/event-details">
-                <button className="bg-white text-black px-4 md:px-6 lg:px-8 h-[50px] md:h-[57px] text-[18px] md:text-[20px] font-semibold rounded-[25px] cursor-pointer">
+                <button
+                  className="bg-white text-black px-4 md:px-6 lg:px-8 h-[40px] md:h-[45px] text-[18px] md:text-[20px] font-semibold rounded-[20px] cursor-pointer"
+                  style={{ paddingLeft: "130px", paddingRight: "130px" }}
+                >
                   Buy Now
                 </button>
               </Link>
 
-              <img
-                src={HeartNShare}
-                alt="Heart and Share"
-                className="w-[120px] md:w-[164px] h-auto"
-              />
+              {/* Heart and Share Icons */}
+              <div className="flex gap-6 text-white text-[30px] md:text-[30px] cursor-pointer" style={{paddingLeft:"20px"}}>
+                <FaHeart className="hover:text-red-500" />
+                <FaShareAlt className="hover:text-gray-400" />
+              </div>
             </div>
           </div>
         </div>

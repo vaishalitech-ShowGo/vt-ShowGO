@@ -3,7 +3,7 @@ import EventsImage4 from "../assets/events4.png";
 import Mapp from "../assets/Map1.png";
 import VenueDetails from "../assets/VenueDetails.png";
 import Footer from "../components/Footer";
-import HeartNShare from "../assets/HeartNShare.png";
+import { FaHeart, FaShareAlt } from "react-icons/fa"; // Importing icons
 import { useSelector, useDispatch } from "react-redux";
 import { increment, decrement } from "../redux/CartSlice";
 
@@ -43,36 +43,64 @@ const EventDetails = () => {
             </h2>
             <p
               className="text-[14px] text-[#D5D5D5] leading-relaxed"
-              style={{ marginTop: "16px" }}
+              style={{ marginTop: "16px", marginBottom: "20px" }}
             >
               Experience an unforgettable night of live performances from
               world-renowned artists, featuring a perfect blend of genres from
               rock to electronic dance music.
             </p>
 
-            {/* Price Section */}
-            <div className="flex items-center" style={{ marginTop: "20px" }}>
-              <span className="text-[24px] md:text-[30px] font-semibold">
-                <span className="text-[16px] md:text-[18px]">INR</span> 299.99
-              </span>
+            {/* Price and Ticket Selection in Same Row with Different Backgrounds */}
+            <div
+              className="flex items-center justify-between gap-4 mt-4"
+              style={{ paddingBottom: "15px" }}
+            >
+              {/* Price Box */}
+              <div className="text-white py-3 px-5 rounded-lg">
+                <span className="text-[24px] md:text-[30px] font-semibold">
+                  <span className="text-[16px] md:text-[18px]">INR</span> 299.99
+                </span>
+              </div>
+
+              {/* Ticket Selection Dropdown */}
+              <div className="bg-[#18181B] text-white py-3 px-5 rounded-lg relative w-full max-w-[250px]">
+                <select
+                  className="appearance-none bg-[#18181B] text-white w-full cursor-pointer text-[16px] outline-none rounded-[20px]"
+                  style={{ padding: "6px" }}
+                >
+                  <option value="vip">VIP PASS - Rs. 3000</option>
+                  <option value="regular">REGULAR PASS - Rs. 2000</option>
+                  <option value="early">EARLY BIRD - Rs. 1000</option>
+                </select>
+
+                {/* Dropdown Icon */}
+                <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                  ▼
+                </div>
+              </div>
             </div>
 
             {/* Quantity & Button Section */}
             <div
-              className="flex flex-col md:flex-row items-center gap-4 w-full"
+              className="flex flex-col md:flex-row items-center gap-12 w-full"
               style={{ marginTop: "12px" }}
             >
               {/* Quantity Selector */}
-              <div className="flex items-center bg-[#18181B] text-white rounded-full px-4 py-2">
+              <div
+                className="flex items-center bg-[#18181B] text-white rounded-full "
+                style={{ padding: "4px" }}
+              >
                 <button
-                  className="text-[20px] px-3" // Added px-3 for spacing
+                  className="text-[20px] cursor-pointer"
                   onClick={() => dispatch(decrement())}
+                  style={{ paddingLeft: "10px", paddingRight: "10px" }}
                 >
                   -
                 </button>
-                <span className="mx-4 text-[18px]">{quantity}</span>
+                <span className="text-[18px]">{quantity}</span>
                 <button
-                  className="text-[20px] px-3" // Added px-3 for spacing
+                  className="text-[20px] cursor-pointer"
+                  style={{ paddingLeft: "10px", paddingRight: "6px" }}
                   onClick={() => dispatch(increment())}
                 >
                   +
@@ -84,13 +112,10 @@ const EventDetails = () => {
                 Book Now
               </button>
 
-              {/* Favorite & Share Buttons */}
-              <div className="w-full md:w-auto flex justify-center">
-                <img
-                  className="h-[40px] md:h-[50px]"
-                  src={HeartNShare}
-                  alt="Heart and Share"
-                />
+              {/* Favorite & Share Icons */}
+              <div className="w-full md:w-auto flex justify-center gap-7 text-white text-[30px] md:text-[25px] cursor-pointer">
+                <FaHeart className="hover:text-red-500" />
+                <FaShareAlt className="hover:text-gray-400" />
               </div>
             </div>
 
@@ -155,12 +180,18 @@ const EventDetails = () => {
       </div>
 
       {/* Terms & Conditions */}
-      <div className="bg-black flex flex-col md:flex-row justify-center px-4 md:px-[180px] mt-10">
+      <div
+        className="bg-black flex flex-col md:flex-row justify-start px-4 md:px-[180px] mt-10"
+        style={{ paddingTop: "40px", paddingLeft: "230px" }}
+      >
         <div className="md:w-1/2">
           <h3 className="text-[22px] font-semibold text-white">
             Terms & Conditions
           </h3>
-          <ul className="text-[16px] text-gray-400 list-disc pl-6 pt-2">
+          <ul
+            className="text-[16px] text-gray-400 list-disc pl-6 pt-2"
+            style={{ paddingTop: "5px", paddingLeft: "30px" }}
+          >
             <li>If you were denied entry, please email at bash@gmail.com</li>
             <li>
               In case of event cancellation, refunds will only be processed if

@@ -7,7 +7,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // State for mobile menu
 
   return (
-    <nav className="fixed top-0 left-0 w-full h-[99px] bg-black flex items-center justify-between px-6 md:px-16 z-50 shadow-lg">
+    <nav className="fixed top-0 left-0 w-full h-[99px] bg-black flex items-center justify-around px-6 md:px-16 z-50 shadow-lg">
       {/* Logo - Clickable */}
       <Link to="/" onClick={() => setActiveTab("home")}>
         <h1 className="text-white text-[35px] font-semibold cursor-pointer">
