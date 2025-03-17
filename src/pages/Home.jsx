@@ -4,14 +4,15 @@ import Arrows from "../assets/Arrows.png";
 import Users from "../assets/Users.png";
 import Map from "../assets/Map.png";
 import DiscoverConcerts from "../assets/DiscoverConcerts.png";
+import Transfer from "../assets/transfer.gif"
+import Group from "../assets/group.gif"
+import Sell from "../assets/sell.gif"
 
 import EventPoster1 from "../assets/EventPoster1.png";
 import EventPoster2 from "../assets/EventPoster2.png";
 import EventPoster3 from "../assets/EventPoster3.png";
 import EventPoster4 from "../assets/EventPoster4.png";
-import InterectiveGallery from "../assets/Interactive-Gallery-[remix] 1.png";
-import ShareYourWork from "../assets/Share-Your-Work-[remix] (2) 1.png";
-import GlideRemix from "../assets/Glide-[remix] 1.png";
+
 import Footer from "../components/Footer";
 
 const Home = () => {
@@ -180,16 +181,16 @@ const Home = () => {
             </button>
           </div>
           <img
-            src={InterectiveGallery}
+            src={Transfer}
             alt=""
-            className="w-[90%] max-w-[660px] h-auto"
+            className="w-[90%] max-w-[660px] h-auto rounded-[20px]"
           />
         </div>
 
         {/* Section 2 */}
         <div className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center gap-10 md:gap-20 px-6 md:px-12">
           <img
-            src={ShareYourWork}
+            src={Sell}
             alt=""
             className="w-[90%] max-w-[671px] h-auto"
           />
@@ -239,7 +240,7 @@ const Home = () => {
             </button>
           </div>
           <img
-            src={GlideRemix}
+            src={Group}
             alt=""
             className="w-[90%] max-w-[720px] h-auto"
           />
