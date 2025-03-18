@@ -14,6 +14,7 @@ const Footer = () => {
           <Link
             to="/contact"
             className="text-lg font-semibold min-h-[40px] hover:underline"
+            onClick={() => window.scrollTo(0, 0)}
           >
             Contact Us
           </Link>
@@ -57,7 +58,11 @@ const Footer = () => {
         {/* Account Section */}
         <div className="flex flex-col gap-2 w-[10%] min-w-[160px] text-left">
           <h3 className="text-lg font-semibold min-h-[40px]">Account</h3>
-          <Link to="/account-delete" className="hover:underline">
+          <Link
+            to="/account-delete"
+            className="hover:underline"
+            onClick={() => window.scrollTo(0, 0)}
+          >
             Request Account <br /> Deletion
           </Link>
         </div>
@@ -80,9 +85,18 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="bg-[#27272A] text-white rounded-[8px] outline-none w-full md:w-auto" style={{paddingLeft:"8px", marginLeft:"-28px"}}
+              className="bg-[#27272A] text-white rounded-[8px] outline-none w-full md:w-auto"
+              style={{ paddingLeft: "8px", marginLeft: "-28px" }}
             />
-            <button className="bg-white text-black rounded-[8px] cursor-pointer text-[15px]" style={{paddingLeft: "5px", paddingTop:"5px", paddingBottom:"7px", paddingRight:"5px"}}>
+            <button
+              className="bg-white text-black rounded-[8px] cursor-pointer text-[15px]"
+              style={{
+                paddingLeft: "5px",
+                paddingTop: "5px",
+                paddingBottom: "7px",
+                paddingRight: "5px",
+              }}
+            >
               Subscribe
             </button>
           </div>
