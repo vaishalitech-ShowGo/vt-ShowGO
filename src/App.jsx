@@ -5,6 +5,8 @@ import Events from "./pages/Events";
 import About from "./pages/About";
 import Contact from "./pages/Contact";  
 import AccountDelete from "./pages/AccountDelete"
+import JoinCommunity from "./pages/JoinCommunity"
+import MembersAdded from "./pages/MembersAdded"
 
 import EventDetails from "./pages/EventDetails"
 
@@ -21,6 +23,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/account-delete" element={<AccountDelete />} />
           <Route path="/event-details" element={<EventDetails />} />
+          <Route path="/join-community" element={<JoinCommunity/>} />
+          <Route path="/members-added" element={<MembersAdded/>} />
         </Routes>
       </div>
     </div>
