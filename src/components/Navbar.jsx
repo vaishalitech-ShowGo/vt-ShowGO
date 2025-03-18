@@ -48,8 +48,8 @@ const Navbar = () => {
       </ul>
 
       {/* Get Started Button (Desktop) */}
-      <Link to="" className="hidden md:flex">
-        <button className="bg-white text-black w-[149.26px] h-[40px] rounded-full font-semibold shadow-lg hover:opacity-80 flex items-center justify-center">
+      <Link to="/login-signup" className="hidden md:flex">
+        <button className="bg-white text-black w-[149.26px] h-[40px] rounded-full font-semibold shadow-lg hover:opacity-80 flex items-center justify-center cursor-pointer">
           <span className="w-[112px] text-center">Get Started</span>
         </button>
       </Link>

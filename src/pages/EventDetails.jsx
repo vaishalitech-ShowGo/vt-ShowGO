@@ -4,6 +4,7 @@ import Mapp from "../assets/Map1.png";
 import VenueDetails from "../assets/VenueDetails.png";
 import Footer from "../components/Footer";
 import { FaHeart, FaShareAlt } from "react-icons/fa"; // Importing icons
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { increment, decrement } from "../redux/CartSlice";
 
@@ -108,9 +109,11 @@ const EventDetails = () => {
               </div>
 
               {/* Book Now Button */}
-              <button className="bg-[#18181B] text-white w-full md:w-[350px] h-[37px] text-[15px] font-semibold rounded-[25px]">
-                Book Now
-              </button>
+              <Link to="booking-confirmation">
+                <button className="bg-[#18181B] text-white w-full md:w-[350px] h-[37px] text-[15px] font-semibold rounded-[25px] cursor-pointer">
+                  Book Now
+                </button>
+              </Link>
 
               {/* Favorite & Share Icons */}
               <div className="w-full md:w-auto flex justify-center gap-7 text-white text-[30px] md:text-[25px] cursor-pointer">

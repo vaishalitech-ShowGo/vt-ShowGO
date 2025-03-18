@@ -7,9 +7,9 @@ import Contact from "./pages/Contact";
 import AccountDelete from "./pages/AccountDelete"
 import JoinCommunity from "./pages/JoinCommunity"
 import MembersAdded from "./pages/MembersAdded"
-
 import EventDetails from "./pages/EventDetails"
-
+import BookingConfirmation from "./pages/BookingConfirmation"
+import LoginPage from "./pages/LoginSignup"
 function App() {
   return (
     <div className="min-h-screen">
@@ -23,8 +23,13 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/account-delete" element={<AccountDelete />} />
           <Route path="/event-details" element={<EventDetails />} />
-          <Route path="/join-community" element={<JoinCommunity/>} />
-          <Route path="/members-added" element={<MembersAdded/>} />
+          <Route path="/join-community" element={<JoinCommunity />} />
+          <Route path="/members-added" element={<MembersAdded />} />
+          <Route path="/login-signup" element={<LoginPage />} />
+          <Route
+            path="/event-details/booking-confirmation"
+            element={<BookingConfirmation />}
+          />
         </Routes>
       </div>
     </div>
