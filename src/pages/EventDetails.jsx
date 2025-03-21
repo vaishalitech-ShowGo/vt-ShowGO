@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EventsImage4 from "../assets/events4.png";
-import Mapp from "../assets/Map1.png";
+import Map from "../assets/Map1.png";
 import VenueDetails from "../assets/VenueDetails.png";
 import Footer from "../components/Footer";
 import { FaHeart, FaShareAlt } from "react-icons/fa"; // Importing icons
@@ -247,8 +247,7 @@ const EventDetails = () => {
   </div>
 </div>
 
-      <Footer />
-    </>
+</>
   );
 };
 

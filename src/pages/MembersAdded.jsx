@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../components/Footer";
 import RightImage from "../assets/RightImage.png";
 import { Link } from "react-router-dom";
 
@@ -54,7 +53,6 @@ const MembersAdded = () => {
           </Link>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -11,6 +11,7 @@ import EventDetails from "./pages/EventDetails"
 import BookingConfirmation from "./pages/BookingConfirmation"
 import LoginPage from "./pages/LoginSignup"
 import AdminPanel from "./pages/AdminPanel";
+import Footer from "./components/Footer";
 function App() {
   return (
     <div className="min-h-screen">
@@ -33,6 +34,8 @@ function App() {
             element={<BookingConfirmation />}
           />
         </Routes>
+        <Footer/>
+
       </div>
     </div>
   );

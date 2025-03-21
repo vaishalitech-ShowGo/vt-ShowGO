@@ -3,7 +3,6 @@ import EventsImage2 from "../assets/events2.png";
 import EventsImage3 from "../assets/events3.png";
 import { FaHeart, FaShareAlt } from "react-icons/fa"; // Importing icons
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
 
 const Events = () => {
   return (
@@ -57,7 +56,6 @@ const Events = () => {
         </div>
       ))}
 
-      <Footer />
     </>
   );
 };

@@ -13,7 +13,6 @@ import EventPoster2 from "../assets/EventPoster2.png";
 import EventPoster3 from "../assets/EventPoster3.png";
 import EventPoster4 from "../assets/EventPoster4.png";
 
-import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -126,55 +125,71 @@ const Home = () => {
     </div>
 </div>
 
-      <div className="bg-black w-full">
-        {/* Section 1 */}
-        <div className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-6 md:px-12 py-10">
-          <div className="text-center md:text-left max-w-[500px]">
-            <h1 className="text-white text-2xl sm:text-3xl leading-snug mb-6">
-              Last-minute change? <br /> No problem! <br /> Easily transfer your{" "}
-              <br /> ticket to a friend!
-            </h1>
-            <button className="bg-white w-24 text-black   font-medium rounded-full shadow-md  py-2">
-              Explore
-            </button>
-          </div>
-          <img
-            src={Transfer}
-            alt=""
-            className="w-full max-w-[660px] h-auto rounded-[20px]"
-          />
-        </div>
 
-        {/* Section 2 */}
-        <div className="min-h-auto flex  flex-col-reverse md:flex-row items-center justify-center gap-6 md:gap-12 px-6 md:px-12 py-10">
-          <img src={Sell} alt="" className="w-full max-w-[671px] h-auto" />
-          <div className="text-center md:text-left max-w-[500px]">
-            <h1 className="text-white text-2xl sm:text-3xl leading-snug mb-6">
-              Can't make it? Sell your <br /> tickets quickly and <br />{" "}
-              securely.
-            </h1>
-            <button className="bg-white w-24 text-black   font-medium rounded-full shadow-md  py-2">
-              Explore
-            </button>
-          </div>
-        </div>
+<div className="bg-black w-full">
+  {/* Section 1 */}
+  <div className="h-screen w-full flex md:flex-row md:justify-between py-4 md:items-center  border-12">
+    {/* Text and Button (Left Side) */}
+    <div className="max-w-1/2 h-full relative left-20  flex flex-col  justify-end">
+      <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
+        Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
+      </h1>
+      <button className="bg-white w-36 text-2xl text-black font-medium rounded-full shadow-md py-2 md:py-3 hover:bg-gray-200 transition h-12 ">
+        Explore
+      </button>
+    </div>
+    {/* Image */}
+    <div className="w-1/2 h-full">
+    <img src={Transfer} alt="Transfer" className=" max-w-full h-full rounded-[20px] ml-[100px] md:ml-20 " />
+    </div>
+  </div>
 
-        {/* Section 3 */}
-        <div className="h-auto  flex flex-col md:flex-row gap-4 justify-center md:gap-12  md:px-12 ">
-          <div className="text-center  md:text-left max-w-[500px] md:flex md:flex-col justify-center ">
-            <h1 className="text-white text-xl sm:text-3xl leading-snug mb-6">
-              Book together, stay <br /> connected, and chat <br /> with your
-              friends.
-            </h1>
-            <button className="bg-white w-24 text-black   font-medium rounded-full shadow-md  py-2">
-              Explore
-            </button>
-          </div>
-          <img src={Group} alt="" className="w-full max-w-[720px] h-auto" />
-        </div>
-      </div>
+  {/* Spacer */}
+  <div className="h-12 md:h-16 bg-black"></div>
 
-      <Footer />
+  {/* Section 2 (Reversed Layout) */}
+  <div className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-evenly gap-6 md:gap-16 px-4 md:px-20 py-8 md:py-16 ">
+  {/* Image (Left Side) */}
+  <img src={Sell} alt="Sell" className="w-full max-w-[671px] h-auto" />
+
+  {/* Text and Button (Right Side - Center Aligned) */}
+  <div className="max-w-1/2 h-full relative left-20  flex flex-col  justify-end">
+      <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
+        Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
+      </h1>
+      <button className="bg-white w-36 text-2xl text-black font-medium rounded-full shadow-md py-2 md:py-3 hover:bg-gray-200 transition h-12 ">
+        Explore
+      </button>
+    </div>
+</div>
+
+
+
+  {/* Spacer */}
+  <div className="h-12 md:h-16 bg-black"></div>
+
+  {/* Section 3 */}
+  <div className="min-h-screen flex flex-col md:flex-row items-end justify-evenly gap-6 md:gap-20 px-4 md:px-24 py-8 md:py-16">
+  {/* Text and Button (Left Side) */}
+  <div className="max-w-1/2 h-full relative left-20  flex flex-col  justify-end">
+      <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
+        Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
+      </h1>
+      <button className="bg-white w-36 text-2xl text-black font-medium rounded-full shadow-md py-2 md:py-3 hover:bg-gray-200 transition h-12 ">
+        Explore
+      </button>
+    </div>
+  
+  {/* Image (Right Side - Adjusted Alignment) */}
+  <div className="flex justify-end w-full md:w-auto">
+    <img src={Group} alt="Group" className="w-full max-w-[750px] h-auto" />
+  </div>
+</div>
+</div>
+
+
+
+
     </>
   );
 };
