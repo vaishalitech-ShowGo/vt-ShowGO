@@ -10,6 +10,7 @@ import MembersAdded from "./pages/MembersAdded"
 import EventDetails from "./pages/EventDetails"
 import BookingConfirmation from "./pages/BookingConfirmation"
 import LoginPage from "./pages/LoginSignup"
+import AdminPanel from "./pages/AdminPanel";
 function App() {
   return (
     <div className="min-h-screen">
@@ -26,6 +27,7 @@ function App() {
           <Route path="/join-community" element={<JoinCommunity />} />
           <Route path="/members-added" element={<MembersAdded />} />
           <Route path="/login-signup" element={<LoginPage />} />
+          <Route path="/admin" element={<AdminPanel/>} />
           <Route
             path="/event-details/booking-confirmation"
             element={<BookingConfirmation />}
