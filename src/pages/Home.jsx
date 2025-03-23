@@ -18,14 +18,14 @@ const Home = () => {
   return (
     <>
       {/* Heading Section */}
-      <div className="bg-black flex flex-col items-center justify-center min-h-[190px]">
+      <div className="bg-black flex flex-col items-center justify-center min-h-[190px] ">
         <h1 className="text-white font-extrabold text-[40px] leading-[45px] tracking-[0.15em] sm:text-[55px] sm:leading-[60px] sm:tracking-[0.20em] md:text-[70px] md:leading-[69px] md:tracking-[0.24em] max-w-[885px] font-inter text-center">
           Snap Tickets, <br /> Share Moments
         </h1>
       </div>
 
       {/* Merged Section: "Dive In" + Features */}
-      <div className="bg-black flex flex-col items-center justify-center gap-6 min-h-[500px]">
+      <div className="bg-black flex flex-col items-center justify-center gap-6 min-h-[500px] ">
         {/* "Dive In" Button */}
         <div className="w-[140px] h-[50px] sm:w-[165px] sm:h-[58px] rounded-lg cursor-pointer flex items-center justify-center border border-white/34">
           <button className="text-white font-Karla cursor-pointer text-[18px] sm:text-[22px] md:text-[24px] leading-[100%] tracking-[0.05em]">
@@ -34,7 +34,7 @@ const Home = () => {
         </div>
 
         {/* Feature Section */}
-        <div className="text-white p-10 w-full flex flex-col md:flex-row gap-5 md:gap-2 justify-center items-center">
+        <div className="text-white p-10 w-full flex flex-col md:flex-row gap-5 md:gap-2 justify-center items-center ">
           <div className="flex-1 flex flex-col items-center gap-3 text-center max-w-[350px]">
             <img
               src={TwoArrows}
@@ -50,7 +50,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="flex-1 flex flex-col items-center gap-3 text-center max-w-[350px]">
+          <div className="flex-1 flex flex-col items-center gap-3 text-center max-w-[350px] ">
             <img
               src={Arrows}
               alt="SellTicketIcon"
@@ -81,16 +81,16 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="min-h-screen bg-black flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 w-full px-4 mt-8 md:mt-0">
+      <div className="min-h-screen  bg-black flex flex-col xl:flex-row  items-center justify-center gap-6 md:gap-12 w-full px-4 mt-8 md:mt-0 ">
         <img
           src={Map}
           alt=""
-          className="w-full max-w-[475px] h-auto md:h-[624px]"
+          className="w-full max-w-[500px] h-auto md:h-[624px]"
         />
         <img
           src={DiscoverConcerts}
           alt=""
-          className="w-full max-w-[900px] h-auto md:h-[625px]"
+          className="w-full  h-auto md:h-[625px] "
         />
       </div>
 
@@ -128,9 +128,9 @@ const Home = () => {
 
 <div className="bg-black w-full">
   {/* Section 1 */}
-  <div className="h-screen w-full flex md:flex-row md:justify-between py-4 md:items-center  border-12">
+  <div className="h-screen w-full flex flex-col justify-center items-center gap-4 md:flex-row md:justify-between py-4 md:items-center">
     {/* Text and Button (Left Side) */}
-    <div className="max-w-1/2 h-full relative left-20  flex flex-col  justify-end">
+    <div className="max-w-1/2 h-auto md:h-full relative left-6 lg:left-20  flex flex-col  justify-end ">
       <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
         Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
       </h1>
@@ -139,7 +139,7 @@ const Home = () => {
       </button>
     </div>
     {/* Image */}
-    <div className="w-1/2 h-full">
+    <div className="md:w-1/2 h-1/2 md:h-full">
     <img src={Transfer} alt="Transfer" className=" max-w-full h-full rounded-[20px] ml-[100px] md:ml-20 " />
     </div>
   </div>
@@ -148,16 +148,16 @@ const Home = () => {
   <div className="h-12 md:h-16 bg-black"></div>
 
   {/* Section 2 (Reversed Layout) */}
-  <div className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-evenly gap-6 md:gap-16 px-4 md:px-20 py-8 md:py-16 ">
+  <div className="min-h-screen flex flex-col-reverse items-center  md:flex-row md:items-center justify-evenly gap-6 md:gap-16 px-4 md:px-20 py-8 md:py-1  ">
   {/* Image (Left Side) */}
-  <img src={Sell} alt="Sell" className="w-full max-w-[671px] h-auto" />
+  <img src={Sell} alt="Sell" className="w-full max-w-[400px] h-auto" />
 
   {/* Text and Button (Right Side - Center Aligned) */}
-  <div className="max-w-1/2 h-full relative left-20  flex flex-col  justify-end">
+  <div className="max-w-1/2 h-full relative flex flex-col  justify-end ">
       <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
         Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
       </h1>
-      <button className="bg-white w-36 text-2xl text-black font-medium rounded-full shadow-md py-2 md:py-3 hover:bg-gray-200 transition h-12 ">
+      <button className="bg-white w-36 text-2xl  text-black font-medium rounded-full shadow-md py-2 md:py-3 hover:bg-gray-200 transition h-12 ">
         Explore
       </button>
     </div>
@@ -166,12 +166,12 @@ const Home = () => {
 
 
   {/* Spacer */}
-  <div className="h-12 md:h-16 bg-black"></div>
+ 
 
   {/* Section 3 */}
-  <div className="min-h-screen flex flex-col md:flex-row items-end justify-evenly gap-6 md:gap-20 px-4 md:px-24 py-8 md:py-16">
+  <div className="min-h-auto flex flex-col items-center md:flex-row md:items-end justify-evenly gap-6 md:gap-20 px-4 md:px-24 py-8 md:py-16  ">
   {/* Text and Button (Left Side) */}
-  <div className="max-w-1/2 h-full relative left-20  flex flex-col  justify-end">
+  <div className="max-w-1/2 h-full relative md:left-20  flex flex-col  justify-end ">
       <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
         Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
       </h1>

@@ -14,10 +14,10 @@ import AdminPanel from "./pages/AdminPanel";
 import Footer from "./components/Footer";
 function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen   ">
       <Navbar />
 
-      <div style={{ paddingTop: "99px" }}>
+      <div style={{ paddingTop: "99px" }} className="">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
