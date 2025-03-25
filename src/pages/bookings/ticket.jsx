@@ -13,8 +13,8 @@ const Ticket = () => {
 
   return (
     <>
-      <div className="font-serif h-96 w-52 bg-white rounded-4xl relative  flex flex-col ">
-        {/* Spacer to make margin-top effect visible */}
+     <div className="font-serif h-96 w-52 overflow-hidden bg-white rounded-4xl relative flex flex-col drop-shadow-[0px_4px_10px_rgba(255,255,255,0.7)]">
+     {/* Spacer to make margin-top effect visible */}
         <div className="h-4"></div>
         {/* Black Box */}
         <div className="bg-black w-full flex flex-col justify-center items-center  p-1">

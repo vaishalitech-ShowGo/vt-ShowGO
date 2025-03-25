@@ -4,8 +4,8 @@ import { AiFillApple, AiFillWindows } from "react-icons/ai";
 import Ticket from "./bookings/ticket";
 const BookingConfirmation = () => {
   return (
-    <div className="min-h-screen flex items-center justify-around bg-black text-white p-6">
-      <div className="max-w-4xl w-full flex flex-col md:flex-row items-center gap-40">
+    <div className="min-h-screen flex  justify-around bg-black text-white p-6">
+      <div className="max-w-4xl w-full flex flex-col md:flex-row mt-6 gap-40">
         {/* Left Section - Ticket Image */}
         <div className="w-1/2 flex justify-center">
        <Ticket/>
