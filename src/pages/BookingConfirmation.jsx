@@ -1,32 +1,27 @@
 import React from "react";
-import { AiFillApple, AiFillWindows } from "react-icons/ai"; // Importing React Icons
-import LeftPart from "../assets/Leftpart.png"; // Corrected import
+import { AiFillApple, AiFillWindows } from "react-icons/ai";
 
+import Ticket from "./bookings/ticket";
 const BookingConfirmation = () => {
   return (
-    <div
-      className="min-h-screen flex items-center justify-around bg-black text-white"
-      style={{ padding: "24px" }}
-    >
+    <div className="min-h-screen flex items-center justify-around bg-black text-white p-6">
       <div className="max-w-4xl w-full flex flex-col md:flex-row items-center gap-40">
         {/* Left Section - Ticket Image */}
-        <div
-          style={{ marginBottom: "24px" }}
-          className="md:w-1/2 flex justify-center md:mb-0"
-        >
-          <img src={LeftPart} alt="Ticket" className="w-[300px] md:w-[350px]" />
-        </div>
+        <div className="w-1/2 flex justify-center">
+       <Ticket/>
+      </div>
+
 
         {/* Right Section - Booking Confirmation */}
-        <div className="md:w-1/2 text-center md:text-left">
+        <div className="md:w-1/2 text-center md:text-left p-4">
           <h1
-            className="text-3xl md:text-4xl font-normal"
+            className="text-3xl text-center md:text-4xl font-normal"
             style={{ marginBottom: "16px" }}
           >
             Booking Confirmed !
           </h1>
           <p
-            className="text-md text-gray-300"
+            className="text-md text-center text-gray-300"
             style={{ marginBottom: "24px", marginLeft: "16px" }}
           >
             Your ticket has been booked successfully. <br />
@@ -36,20 +31,22 @@ const BookingConfirmation = () => {
 
           {/* Buttons */}
           <div
-            className="flex flex-col md:flex-row justify-center md:justify-start gap-4"
+            className="flex flex-col mt-4 md:flex-row justify-center md:justify-start gap-4"
             style={{ marginBottom: "44px" }}
           >
-            <button className="bg-white text-black px-6 py-2 rounded-2xl font-medium w-full">
+            <button
+              className="bg-white text-black font-semibold px-6 py-2 rounded-2xl font-medium w-full"
+              style={{ padding: "4px" }}
+            >
               Download
             </button>
             <button
-              className="bg-white text-black rounded-2xl font-medium w-full"
+              className="bg-white text-black font-semibold px-6 py-2 rounded-2xl font-medium w-full"
               style={{ padding: "4px" }}
             >
               Go Back
             </button>
           </div>
-
           {/* Mobile App Section */}
           <div
             className="flex items-center justify-between bg-white text-black rounded-2xl shadow-md"
@@ -57,7 +54,7 @@ const BookingConfirmation = () => {
           >
             {/* Left Section - Text with Icon */}
             <div className="flex items-center gap-2">
-              <span className="text-black text-xs">ⓘ</span>
+              <span className="text-black font-semibold text-xs">ⓘ</span>
               <p className="text-xs">
                 Download our iOS or Android Mobile app for easy access
               </p>
