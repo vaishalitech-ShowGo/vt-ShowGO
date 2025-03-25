@@ -13,15 +13,15 @@ const BookingConfirmation = () => {
 
 
         {/* Right Section - Booking Confirmation */}
-        <div className="md:w-1/2 text-center md:text-left p-4">
+        <div className="md:w-1/2 text-center font-serif md:text-left p-4">
           <h1
-            className="text-3xl text-center md:text-4xl font-normal"
+            className="text-3xl text-center  md:text-4xl font-normal"
             style={{ marginBottom: "16px" }}
           >
             Booking Confirmed !
           </h1>
           <p
-            className="text-md text-center text-gray-300"
+            className="text-md text-center  text-gray-300"
             style={{ marginBottom: "24px", marginLeft: "16px" }}
           >
             Your ticket has been booked successfully. <br />
