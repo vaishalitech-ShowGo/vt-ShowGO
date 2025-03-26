@@ -35,19 +35,19 @@ const Profile = () => {
      };
 
      return (
-          <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
-               <div className="max-w-4xl w-full bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+          <div className="min-h-screen bg-black flex items-center justify-center p-4">
+               <div className="max-w-4xl w-full bg-black rounded-xl shadow-2xl overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-3xl hover:bg-gradient-to-r hover:from-gray-800 hover:to-gray-900">
                     {/* Header */}
-                    <div className="bg-gray-700 px-6 py-4 flex justify-between items-center border-b border-gray-600">
-                         <Link to="/" className="flex items-center text-amber-400 hover:text-amber-300">
+                    <div className="bg-gray-800 px-6 py-4 flex justify-between items-center border-b border-gray-700">
+                         <Link to="/" className="flex items-center text-gray-400 hover:text-gray-300">
                               <FiArrowLeft className="mr-2" /> Back to Home
                          </Link>
                          <button
                               onClick={() => setEditMode(!editMode)}
                               className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
                                    editMode
-                                        ? "bg-gray-600 hover:bg-gray-500 text-white"
-                                        : "bg-amber-600 hover:bg-amber-500 text-white"
+                                        ? "bg-gray-700 hover:bg-gray-600 text-white"
+                                        : "bg-gray-400 hover:bg-gray-300 text-black"
                               }`}
                          >
                               {editMode ? (
@@ -70,7 +70,7 @@ const Profile = () => {
                                    <img
                                         src={user.profileImage}
                                         alt="profile"
-                                        className="h-32 w-32 rounded-full border-4 border-amber-500 object-cover shadow-lg"
+                                        className="h-32 w-32 rounded-full border-4 border-gray-400 object-cover shadow-lg"
                                    />
                                    {editMode && (
                                         <label
@@ -96,7 +96,7 @@ const Profile = () => {
                                              name="fullname"
                                              value={updatedUser.fullname}
                                              onChange={handleInputChange}
-                                             className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white mb-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                             className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white mb-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                    ) : (
                                         <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">{user.fullname}</h1>
@@ -108,10 +108,10 @@ const Profile = () => {
                                              name="bio"
                                              value={updatedUser.bio}
                                              onChange={handleInputChange}
-                                             className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                             className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                    ) : (
-                                        <p className="text-gray-300 italic mb-4">{user.bio}</p>
+                                        <p className="text-gray-400 italic mb-4">{user.bio}</p>
                                    )}
                               </div>
                          </div>
@@ -119,32 +119,32 @@ const Profile = () => {
                          {/* Contact Information */}
                          <div className="space-y-4">
                               <div className="flex items-center">
-                                   <FiMail className="text-amber-400 mr-3 text-xl" />
+                                   <FiMail className="text-gray-400 mr-3 text-xl" />
                                    {editMode ? (
                                         <input
                                              type="email"
                                              name="email"
                                              value={updatedUser.email}
                                              onChange={handleInputChange}
-                                             className="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                             className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                    ) : (
-                                        <span className="text-gray-300">{user.email}</span>
+                                        <span className="text-gray-400">{user.email}</span>
                                    )}
                               </div>
 
                               <div className="flex items-center">
-                                   <FiPhone className="text-amber-400 mr-3 text-xl" />
+                                   <FiPhone className="text-gray-400 mr-3 text-xl" />
                                    {editMode ? (
                                         <input
                                              type="text"
                                              name="phoneNumber"
                                              value={updatedUser.phoneNumber}
                                              onChange={handleInputChange}
-                                             className="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                             className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                    ) : (
-                                        <span className="text-gray-300">{user.phoneNumber}</span>
+                                        <span className="text-gray-400">{user.phoneNumber}</span>
                                    )}
                               </div>
                          </div>
@@ -154,7 +154,7 @@ const Profile = () => {
                               <div className="mt-8">
                                    <button
                                         onClick={handleSave}
-                                        className="w-full md:w-auto flex items-center justify-center bg-amber-600 hover:bg-amber-500 text-white px-6 py-3 rounded-lg shadow-lg transition-colors"
+                                        className="w-full md:w-auto flex items-center justify-center bg-gray-400 hover:bg-gray-300 text-black px-6 py-3 rounded-lg shadow-lg transition-colors"
                                    >
                                         <FiSave className="mr-2" /> Save Changes
                                    </button>
