@@ -1,18 +1,32 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiEdit, FiSave, FiX, FiArrowLeft, FiMail, FiPhone } from "react-icons/fi";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const Profile = () => {
-     const [user, setUser] = useState({
-          fullname: "John Doe",
-          email: "johndoe@example.com",
-          bio: "Web Developer | Tech Enthusiast",
-          phoneNumber: "123-456-7890",
+     const { user } = useAuth();
+
+     const [editMode, setEditMode] = useState(false);
+     const [updatedUser, setUpdatedUser] = useState({
+          fullname: "",
+          email: "",
+          bio: "",
+          phoneNumber: "",
           profileImage: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
      });
 
-     const [editMode, setEditMode] = useState(false);
-     const [updatedUser, setUpdatedUser] = useState({ ...user });
+     // Initialize updatedUser when user data is available
+     React.useEffect(() => {
+          if (user) {
+               setUpdatedUser({
+                    fullname: user?.name || "John Doe",
+                    email: user?.email || "johndoe@example.com",
+                    bio: user?.bio || "Web Developer | Tech Enthusiast",
+                    phoneNumber: user?.phoneNumber || "123-456-7890",
+                    profileImage: user?.profileImage || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
+               });
+          }
+     }, [user]);
 
      const handleInputChange = (e) => {
           setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
@@ -30,9 +44,18 @@ const Profile = () => {
      };
 
      const handleSave = () => {
-          setUser(updatedUser);
           setEditMode(false);
      };
+
+     if (!user) {
+          return (
+               <div className="min-h-screen bg-black flex items-center justify-center p-4">
+                    <div className="max-w-4xl w-full bg-black rounded-xl shadow-2xl overflow-hidden p-6 text-center">
+                         <p className="text-white">Loading profile...</p>
+                    </div>
+               </div>
+          );
+     }
 
      return (
           <div className="min-h-screen bg-black flex items-center justify-center p-4">
@@ -44,11 +67,10 @@ const Profile = () => {
                          </Link>
                          <button
                               onClick={() => setEditMode(!editMode)}
-                              className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
-                                   editMode
+                              className={`flex items-center px-4 py-2 rounded-lg transition-colors ${editMode
                                         ? "bg-gray-700 hover:bg-gray-600 text-white"
                                         : "bg-gray-400 hover:bg-gray-300 text-black"
-                              }`}
+                                   }`}
                          >
                               {editMode ? (
                                    <>
@@ -68,7 +90,7 @@ const Profile = () => {
                          <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
                               <div className="relative group">
                                    <img
-                                        src={user.profileImage}
+                                        src={updatedUser.profileImage}
                                         alt="profile"
                                         className="h-32 w-32 rounded-full border-4 border-gray-400 object-cover shadow-lg"
                                    />
@@ -99,7 +121,7 @@ const Profile = () => {
                                              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white mb-2 focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                    ) : (
-                                        <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">{user.fullname}</h1>
+                                        <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">{updatedUser.fullname}</h1>
                                    )}
 
                                    {editMode ? (
@@ -111,7 +133,7 @@ const Profile = () => {
                                              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                    ) : (
-                                        <p className="text-gray-400 italic mb-4">{user.bio}</p>
+                                        <p className="text-gray-400 italic mb-4">{updatedUser.bio}</p>
                                    )}
                               </div>
                          </div>
@@ -129,7 +151,7 @@ const Profile = () => {
                                              className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                    ) : (
-                                        <span className="text-gray-400">{user.email}</span>
+                                        <span className="text-gray-400">{updatedUser.email}</span>
                                    )}
                               </div>
 
@@ -144,7 +166,7 @@ const Profile = () => {
                                              className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-gray-400"
                                         />
                                    ) : (
-                                        <span className="text-gray-400">{user.phoneNumber}</span>
+                                        <span className="text-gray-400">{updatedUser.phoneNumber}</span>
                                    )}
                               </div>
                          </div>
