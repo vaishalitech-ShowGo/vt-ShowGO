@@ -1,33 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import EventsImage4 from "../assets/events4.png";
 import Map from "../assets/Map1.png";
 import VenueDetails from "../assets/VenueDetails.png";
-import Footer from "../components/Footer";
-import { FaHeart, FaShareAlt } from "react-icons/fa"; // Importing icons
+import { FaHeart, FaShareAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "../redux/CartSlice";
+import { useCart } from "../context/CartContext";
 
 const EventDetails = () => {
-  const dispatch = useDispatch();
-  const quantity = useSelector((state) => state.cart.quantity);
-  const [showRadioOptions, setShowRadioOptions] = useState(false);
-  const [selectedTicket, setSelectedTicket] = useState("Selected Ticket")
+  const { 
+    quantity, 
+    selectedTicket, 
+    increment, 
+    decrement, 
+    updateSelectedTicket 
+  } = useCart();
 
-  const handleSelection = (value) =>{
-    setSelectedTicket(value); // Display Selected Options
-    setShowRadioOptions(false); // After Select Ticket prize the dropdown will be closed. 
-  }
+  const ticketOptions = [
+    { name: "VIP PASS", price: 3000, display: "VIP PASS - Rs. 3000" },
+    { name: "REGULAR PASS", price: 2000, display: "REGULAR PASS - Rs. 2000" },
+    { name: "EARLY BIRD", price: 1000, display: "EARLY BIRD - Rs. 1000" }
+  ];
+
+  const handleSelection = (ticket) => {
+    updateSelectedTicket(ticket);
+  };
+
+  const currentTicket = ticketOptions.find(t => t.name === selectedTicket.name) || ticketOptions[2];
 
   return (
-    <>
-      <div
-        className="bg-black flex items-center justify-center px-4"
-        style={{ padding: "40px" }}
-      >
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-around max-w-[1200px] w-full">
+    <div className="bg-black">
+      {/* Event Details Section */}
+      <div className="px-4 py-10 md:px-10 lg:px-20 xl:px-40">
+        <div className="flex flex-col lg:flex-row gap-8 xl:gap-12">
           {/* Left Side Image */}
-          <div className="w-full flex justify-center md:w-auto">
+          <div className="flex-1 flex justify-center">
             <img
               src={EventsImage4}
               alt="Event"
@@ -36,159 +42,107 @@ const EventDetails = () => {
           </div>
 
           {/* Right Side Content */}
-          <div
-            className="text-white w-full md:w-[600px] mt-6 md:mt-0"
-            style={{ marginLeft: "40px" }}
-          >
-            <h1 className="text-[28px] md:text-[40px]">
+          <div className="flex-1 text-white">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
               Summer Music Festival
             </h1>
-            <h2
-              className="text-[18px] md:text-[22px] text-gray-400"
-              style={{ marginTop: "8px" }}
-            >
+            <h2 className="text-lg md:text-xl text-gray-400 mt-2">
               Unleashing the Extraordinary
             </h2>
-            <p
-              className="text-[14px] text-[#D5D5D5] leading-relaxed"
-              style={{ marginTop: "16px", marginBottom: "20px" }}
-            >
+            <p className="text-sm md:text-base text-[#D5D5D5] mt-4 mb-5">
               Experience an unforgettable night of live performances from
               world-renowned artists, featuring a perfect blend of genres from
               rock to electronic dance music.
             </p>
 
-            {/* Price and Ticket Selection in Same Row with Different Backgrounds */}
-            <div className="flex items-center justify-between gap-4 mt-4 pb-4">
-
-              {/* Price Box */}
-              <div className="text-white py-3 px-5 rounded-lg flex items-center gap-3">
-                <span className="text-[24px] md:text-[30px] font-semibold">
-                  <span className="text-[16px] md:text-[18px]">INR</span> 299.99
-                </span>
-                <span className="text-green-400 text-[14px] md:text-[16px] font-medium">
-                  EARLY BIRD - Rs. 1000
+            {/* Price and Ticket Selection */}
+            <div className="flex flex-col md:flex-row gap-4 mt-6">
+              <div className="flex-1 bg-[#18181B] p-4 rounded-lg">
+                <span className="text-xl md:text-2xl font-semibold">
+                  {currentTicket.display}
                 </span>
               </div>
-
-              {/* Ticket Selection with Radio Options */}
-              <div className="bg-[#18181B] text-white py-3 px-5 rounded-lg relative w-full max-w-[250px] cursor-pointer">
-                <div
-                  className="appearance-none bg-[#18181B] text-white w-full cursor-pointer text-[16px] outline-none rounded-[20px] flex items-center justify-between"
-                  style={{ padding: "6px" }}
-                  onClick={() => setShowRadioOptions(!showRadioOptions)}
-                >
-                  {selectedTicket}▼
-                </div>
-
-                {showRadioOptions && (
-                    <div className="absolute top-full left-0 w-full bg-[#18181B] text-white rounded-lg shadow-md mt-2 p-4 space-y-3 border border-gray-700">
-                        <div 
-                            className="flex items-center gap-2 bg-[#27272A] p-3 rounded-md cursor-pointer hover:bg-gray-700"
-                            onClick={() => handleSelection("VIP PASS - Rs. 3000")}
-                        >
-                            <input type="radio" name="ticket" value="vip" className="accent-green-500" />
-                            VIP PASS - Rs. 3000
-                        </div>
-
-                        <div 
-                            className="flex items-center gap-2 bg-[#27272A] p-3 rounded-md cursor-pointer hover:bg-gray-700"
-                            onClick={() => handleSelection("REGULAR PASS - Rs. 2000")}
-                        >
-                            <input type="radio" name="ticket" value="regular" className="accent-green-500" />
-                            REGULAR PASS - Rs. 2000
-                        </div>
-
-                        <div 
-                            className="flex items-center gap-2 bg-[#27272A] p-3 rounded-md cursor-pointer hover:bg-gray-700"
-                            onClick={() => handleSelection("EARLY BIRD - Rs. 1000")}
-                        >
-                            <input type="radio" name="ticket" value="early" className="accent-green-500" />
-                            EARLY BIRD - Rs. 1000
-                        </div>
+              
+              <div className="flex-1 bg-[#18181B] p-4 rounded-lg">
+                <div className="space-y-3">
+                  {ticketOptions.map((option) => (
+                    <div 
+                      key={option.name}
+                      className="flex items-center gap-2 bg-[#27272A] p-3 rounded-md cursor-pointer hover:bg-gray-700"
+                      onClick={() => handleSelection(option)}
+                    >
+                      <input 
+                        type="radio" 
+                        name="ticket" 
+                        className="accent-green-500" 
+                        checked={selectedTicket.name === option.name}
+                        onChange={() => {}}
+                        readOnly
+                      />
+                      {option.display}
                     </div>
-                )}
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Quantity & Button Section */}
-            <div
-              className="flex flex-col md:flex-row items-center gap-12 w-full"
-              style={{ marginTop: "12px" }}
-            >
-              {/* Quantity Selector */}
-              <div
-                className="flex items-center bg-[#18181B] text-white rounded-full "
-                style={{ padding: "4px" }}
-              >
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 mt-6">
+              <div className="flex items-center bg-[#18181B] text-white rounded-full px-4 py-2">
                 <button
-                  className="text-[20px] cursor-pointer"
-                  onClick={() => dispatch(decrement())}
-                  style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                  className="text-xl cursor-pointer px-2"
+                  onClick={decrement}
                 >
                   -
                 </button>
-                <span className="text-[18px]">{quantity}</span>
+                <span className="text-lg mx-2">{quantity}</span>
                 <button
-                  className="text-[20px] cursor-pointer"
-                  style={{ paddingLeft: "10px", paddingRight: "6px" }}
-                  onClick={() => dispatch(increment())}
+                  className="text-xl cursor-pointer px-2"
+                  onClick={increment}
                 >
                   +
                 </button>
               </div>
 
-              {/* Book Now Button */}
-              <Link to="booking-confirmation">
-                <button className="bg-[#18181B] text-white w-full md:w-[350px] h-[37px] text-[15px] font-semibold rounded-[25px] cursor-pointer">
+              <Link 
+                to="booking-confirmation" 
+                className="flex-1 w-full md:w-auto"
+              >
+                <button className="bg-[#18181B] text-white w-full h-[37px] text-sm md:text-base font-semibold rounded-[25px] cursor-pointer">
                   Book Now
                 </button>
               </Link>
 
-              {/* Favorite & Share Icons */}
-              <div className="w-full md:w-auto flex justify-center gap-7 text-white text-[30px] md:text-[25px] cursor-pointer">
+              <div className="flex gap-6 text-white text-2xl md:text-xl cursor-pointer">
                 <FaHeart className="hover:text-red-500" />
                 <FaShareAlt className="hover:text-gray-400" />
               </div>
             </div>
 
             {/* Price Summary Section */}
-            <div
-              className="bg-[#18181B] p-5 rounded-xl text-white w-full"
-              style={{ marginTop: "30px" }}
-            >
-              <div
-                className="flex justify-between text-[16px]"
-                style={{ padding: "8px 14px" }}
-              >
+            <div className="bg-[#18181B] p-5 rounded-xl mt-8">
+              <div className="flex justify-between text-base py-2">
                 <span>Subtotal</span>
-                <span>INR {quantity * 299.99}</span>
+                <span>INR {quantity * selectedTicket.price}</span>
               </div>
-              <div
-                className="flex justify-between text-[16px] text-yellow-400 mt-2"
-                style={{ paddingBottom: "10px", paddingLeft: "11px" }}
-              >
+              <div className="flex justify-between text-base text-yellow-400 py-2">
                 <span>+ Other Charges</span>
+                <span>INR 75.00</span>
               </div>
-              <hr className="border-gray-700" />
-              <div
-                className="flex justify-between text-[15px] font-semibold"
-                style={{ padding: "14px" }}
-              >
+              <hr className="border-gray-700 my-2" />
+              <div className="flex justify-between text-base font-semibold py-2">
                 <span>Total Amount</span>
-                <span>INR {(quantity * 299.99 + 75).toFixed(2)}</span>
+                <span>INR {(quantity * selectedTicket.price + 75).toFixed(2)}</span>
               </div>
             </div>
 
             {/* Event Info */}
-            <div style={{ marginTop: "32px" }}>
-              <h3 className="text-[22px] font-semibold">Event Info</h3>
-              <ul className="text-[16px] text-gray-400 list-disc pl-6 pt-2">
+            <div className="mt-8">
+              <h3 className="text-xl md:text-2xl font-semibold">Event Info</h3>
+              <ul className="text-sm md:text-base text-gray-400 list-disc pl-6 space-y-2 mt-2">
                 <li>Event Restriction: 18+ event with valid ID required.</li>
                 <li>Event Time: Doors open at 9:00 PM, no re-entry.</li>
-                <li>
-                  Prohibited Items: No outside food, drinks, or large bags.
-                </li>
+                <li>Prohibited Items: No outside food, drinks, or large bags.</li>
               </ul>
             </div>
           </div>
@@ -196,58 +150,44 @@ const EventDetails = () => {
       </div>
 
       {/* Venue Details */}
-      <div
-  className="bg-black text-white flex flex-col md:flex-row justify-center items-center py-12 md:py-20"
-  style={{ paddingTop: "45px" }}
->
-  <img
-    className="w-full max-w-[425px] h-auto"
-    src={VenueDetails}
-    alt="Venue Details"
-  />
-  <img
-    className="w-full max-w-[676px] h-auto mt-6 md:mt-0 md:ml-8"
-    src={Map}
-    alt="Map"
-  />
-</div>
+      <div className="bg-black py-12 md:py-16 px-4 md:px-10 lg:px-20">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-8 max-w-[1200px] mx-auto">
+          <img
+            className="w-full max-w-[425px] h-auto"
+            src={VenueDetails}
+            alt="Venue Details"
+          />
+          <img
+            className="w-full max-w-[676px] h-auto"
+            src={Map}
+            alt="Map"
+          />
+        </div>
+      </div>
 
       {/* Terms & Conditions */}
-      <div className="bg-black flex justify-center px-4 py-12 md:py-24 mb-16">
-  <div className="w-full max-w-[1200px]">
-    {/* Heading with increased margin-bottom for spacing */}
-    <h3 className="text-[28px] font-bold text-white mb-8">
-      Terms & Conditions
-    </h3>
-    <ul className="text-[16px] text-gray-400 list-disc pl-6 space-y-4">
-      <li>If you were denied entry, please email at bash@gmail.com</li>
-      <li>
-        In case of event cancellation, refunds will only be processed if payouts
-        haven't been released.
-      </li>
-      <li>
-        Bash is not responsible for intellectual property issues during
-        performances.
-      </li>
-      <li>Tickets allow “Single Entry Per Day” and are non-refundable.</li>
-      <li>
-        Attendees must carry a valid ID proof for age verification at the venue.
-      </li>
-      <li>
-        The event organizers reserve the right to refuse entry without providing a
-        reason.
-      </li>
-      <li>
-        Outside food and beverages are strictly prohibited inside the venue.
-      </li>
-      <li>
-        The event schedule and lineup are subject to change without prior notice.
-      </li>
-    </ul>
-  </div>
-</div>
-
-</>
+      <div className="bg-black py-12 md:py-16 px-4 md:px-10 lg:px-20 mb-16">
+        <div className="max-w-[1200px] mx-auto">
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8">
+            Terms & Conditions
+          </h3>
+          <ul className="text-sm md:text-base text-gray-400 list-disc pl-6 space-y-3 md:space-y-4">
+            {[
+              "If you were denied entry, please email at bash@gmail.com",
+              "In case of event cancellation, refunds will only be processed if payouts haven't been released.",
+              "Bash is not responsible for intellectual property issues during performances.",
+              "Tickets allow 'Single Entry Per Day' and are non-refundable.",
+              "Attendees must carry a valid ID proof for age verification at the venue.",
+              "The event organizers reserve the right to refuse entry without providing a reason.",
+              "Outside food and beverages are strictly prohibited inside the venue.",
+              "The event schedule and lineup are subject to change without prior notice."
+            ].map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 };
 

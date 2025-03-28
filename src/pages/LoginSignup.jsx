@@ -12,15 +12,42 @@ const AuthForm = () => {
     confirmPassword: "",
   });
 
-  const navigate = useNavigate();
-  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const { register, login } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.email && formData.password) {
-      login(); 
-      navigate("/");
+    setError("");
+    setLoading(true);
+  
+    try {
+      if (!isLogin) {
+        if (formData.password !== formData.confirmPassword) {
+          throw new Error("Passwords don't match");
+        }
+        await register(formData.email, formData.password, formData.fullName);
+        setIsLogin(true);
+        setError("Signup successful! Please log in.");
+      } else {
+        await login(formData.email, formData.password);
+        navigate("/");
+      }
+    } catch (err) {
+      setError(err.message || "An error occurred");
+    } finally {
+      setLoading(false);
     }
+  };
+  
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -61,178 +88,107 @@ const AuthForm = () => {
         </div>
 
         {/* Auth Form Section */}
-        <div className="bg-white/10 rounded-lg p-1 ">
-          {/* Login/Signup Toggle */}
-          <div className="flex justify-center mb-6">
-            <div className="bg-white/10 rounded-lg p-1 flex gap-2">
-              <button
-                className={`w-32 h-12 text-lg font-semibold rounded-md transition-all duration-300 border-2 ${
-                  isLogin
-                    ? "bg-[#18181B] text-[#FAFAFA] border-[#18181B] hover:bg-[#28282E]"
-                    : "bg-transparent text-[#71717A] border-transparent hover:bg-[#28282E]"
-                }`}
-                onClick={() => setIsLogin(true)}
-              >
-                Login
-              </button>
-              <button
-                className={`w-32 h-12 text-lg font-semibold rounded-md transition-all duration-300 border-2 ${
-                  !isLogin
-                    ? "bg-[#18181B] text-[#FAFAFA] border-[#18181B] hover:bg-[#28282E]"
-                    : "bg-transparent text-[#71717A] border-transparent hover:bg-[#28282E]"
-                }`}
-                onClick={() => setIsLogin(false)}
-              >
-                Sign Up
-              </button>
+        <div className="bg-white/10 rounded-lg p-6">
+          {/* Error Message */}
+          {error && (
+            <div className="mb-4 p-3 bg-red-500/20 text-red-200 rounded-md">
+              {error}
             </div>
-          </div>
+          )}
 
-          {/* Form */}
+          {/* Auth Form */}
           <form onSubmit={handleSubmit}>
-            <div className="space-y-6">
-              {/* Full Name - Only for Sign Up */}
-              {!isLogin && (
-                <div className="space-y-3">
-                  <label htmlFor="fullName" className="block text-sm font-medium text-white mb-1">
-                    Full Name
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="fullName"
-                      name="fullName"
-                      type="text"
-                      placeholder="John Doe"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="block w-full h-11 pl-10 pr-3 py-2 text-sm rounded-md bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                      required={!isLogin}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* Email */}
+            {/* Full Name - Only for Sign Up */}
+            {!isLogin && (
               <div className="space-y-3">
-                <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
-                  Email
+                <label htmlFor="fullName" className="block text-sm font-medium text-white mb-1">
+                  Full Name
                 </label>
-                <div className="relative">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="block w-full h-11 pl-10 pr-3 py-2 text-sm rounded-md bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                    required
-                  />
-                </div>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  placeholder="John Doe"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  className="block w-full h-11 px-4 py-2 text-sm rounded-md bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  required
+                />
               </div>
+            )}
 
-              {/* Password */}
-              <div className="space-y-3">
-                <label htmlFor="password" className="block text-sm font-medium text-white mb-1">
-                  Password
-                </label>
-                <div className="relative">
-                  <input
-                    id="password"
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    className="block w-full h-11 pl-10 pr-10 py-2 text-sm rounded-md bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                    required
-                    minLength={6}
-                  />
-                  <button
-                    type="button"
-                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                        <path d="M14.12 14.12a3 3 0 0 1-4.24-4.24"></path>
-                        <line x1="3" x2="21" y1="3" y2="21"></line>
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                      </svg>
-                    )}
-                  </button>
-                </div>
-              </div>
+            {/* Email */}
+            <div className="space-y-3 mt-4">
+              <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                className="block w-full h-11 px-4 py-2 text-sm rounded-md bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                required
+              />
+            </div>
 
-              {/* Confirm Password - Only for Sign Up */}
-              {!isLogin && (
-                <div className="space-y-3">
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mb-1">
-                    Confirm Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      type="password"
-                      placeholder="Confirm your password"
-                      value={formData.confirmPassword}
-                      onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                      className="block w-full h-11 pl-10 pr-3 py-2 text-sm rounded-md bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                      required={!isLogin}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* Submit Button */}
-              <div className="pt-2">
+            {/* Password */}
+            <div className="space-y-3 mt-4">
+              <label htmlFor="password" className="block text-sm font-medium text-white mb-1">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="block w-full h-11 px-4 pr-10 py-2 text-sm rounded-md bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  required
+                  minLength={8}
+                />
                 <button
-                  type="submit"
-                  className="w-full h-11 flex items-center justify-center gap-2 rounded-md bg-amber-600 text-white font-medium hover:bg-amber-700 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white"
+                  onClick={() => setShowPassword(!showPassword)}
                 >
-                  {isLogin ? "Login" : "Create Account"}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
+                  👁
                 </button>
               </div>
+            </div>
+
+            {/* Confirm Password - Only for Sign Up */}
+            {!isLogin && (
+              <div className="space-y-3 mt-4">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-white mb-1">
+                  Confirm Password
+                </label>
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="block w-full h-11 px-4 py-2 text-sm rounded-md bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  required
+                />
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <div className="pt-6">
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full h-11 flex items-center justify-center gap-2 rounded-md bg-amber-600 text-white font-medium hover:bg-amber-700 transition-colors"
+              >
+                {loading ? "Processing..." : isLogin ? "Login" : "Create Account"}
+              </button>
             </div>
           </form>
 
@@ -240,8 +196,12 @@ const AuthForm = () => {
           <div className="mt-6 text-center text-sm text-gray-500">
             {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
             <button
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 underline-offset-4 hover:underline p-0 h-auto text-white"
-              onClick={() => setIsLogin(!isLogin)}
+              type="button"
+              className="text-amber-400 hover:text-amber-300 font-medium"
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setError("");
+              }}
             >
               {isLogin ? "Sign Up" : "Login"}
             </button>

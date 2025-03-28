@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import TwoArrows from "../assets/TwoArrows.png";
 import Arrows from "../assets/Arrows.png";
 import Users from "../assets/Users.png";
@@ -7,22 +10,77 @@ import DiscoverConcerts from "../assets/DiscoverConcerts.png";
 import Transfer from "../assets/transfer.gif";
 import Group from "../assets/group.gif";
 import Sell from "../assets/sell.gif";
-
 import EventPoster1 from "../assets/EventPoster1.png";
 import EventPoster2 from "../assets/EventPoster2.png";
 import EventPoster3 from "../assets/EventPoster3.png";
 import EventPoster4 from "../assets/EventPoster4.png";
 
-
 const Home = () => {
+  const sliderRef = useRef(null);
+
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 200, // Increased from 500 for faster transitions
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 2500, // Reduced from 3000 for quicker cycling
+    cssEase: 'ease-in-out', // Smoother animation
+    swipeToSlide: true, // Allows swiping to any slide (not just full scrolls)
+    draggable: true, // Enables mouse dragging on desktop
+    pauseOnHover: true, // Pauses autoplay on hover
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: false
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          centerMode: false
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: '15%', // Better padding for mobile
+          adaptiveHeight: true // Adjusts height based on current slide
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: '10%', // Less padding on very small screens
+          adaptiveHeight: true
+        }
+      }
+    ]
+  };
+
   return (
     <>
       {/* Heading Section */}
+      <div className="overflow-x-hidden">
       <div className="bg-black flex flex-col items-center justify-center min-h-[190px] ">
         <h1 className="text-white font-extrabold text-[40px] leading-[45px] tracking-[0.15em] sm:text-[55px] sm:leading-[60px] sm:tracking-[0.20em] md:text-[70px] md:leading-[69px] md:tracking-[0.24em] max-w-[885px] font-inter text-center">
           Snap Tickets, <br /> Share Moments
         </h1>
       </div>
+      
 
       {/* Merged Section: "Dive In" + Features */}
       <div className="bg-black flex flex-col items-center justify-center gap-6 min-h-[500px] ">
@@ -45,7 +103,7 @@ const Home = () => {
               Transfer Your Ticket
             </h1>
             <p className="text-sm sm:text-base">
-              Can’t make it to the show? Easily transfer your ticket to a friend
+              Can't make it to the show? Easily transfer your ticket to a friend
               and let them enjoy the event in your place.
             </p>
           </div>
@@ -75,7 +133,7 @@ const Home = () => {
               Group <br /> Bookings
             </h1>
             <p className="text-sm sm:text-base font-light leading-[20px] sm:leading-[22px] tracking-[0.11em]">
-              Book with friends and keep track of everyone’s plans.
+              Book with friends and keep track of everyone's plans.
             </p>
           </div>
         </div>
@@ -94,53 +152,62 @@ const Home = () => {
         />
       </div>
 
+      {/* Trending Events Section with Carousel */}
       <div className="bg-black w-full px-4 md:px-12 py-8">
-    <h1
-        className="text-white font-inter font-[400] text-[24px] leading-[38px] tracking-[0.17em] sm:text-[28px] sm:leading-[30px] md:text-[32px] md:leading-[32px] mb-6"
-        style={{
-            paddingLeft: "50px",
-            paddingBottom: "30px",
-            paddingTop: "20px",
-        }}
-    >
-        Trending Events:
-    </h1>
+  <h1
+    className="text-white font-inter font-[400] text-[24px] leading-[38px] tracking-[0.17em] sm:text-[28px] sm:leading-[30px] md:text-[32px] md:leading-[32px] mb-6"
+    style={{
+      paddingLeft: "50px",
+      paddingBottom: "30px",
+      paddingTop: "20px",
+    }}
+  >
+    Trending Events:
+  </h1>
 
-    {/* Event Posters with Details */}
-    <div className="flex flex-wrap md:flex-nowrap justify-center md:justify-center items-center gap-6 w-full">
-        {[EventPoster1, EventPoster2, EventPoster3, EventPoster4].map((poster, index) => (
-            <div key={index} className="w-[80%] sm:w-[335px] h-auto bg-[#1a1a1a] text-white rounded-lg shadow-lg overflow-hidden">
-                <img
-                    src={poster}
-                    alt="Event Poster"
-                    className="w-full h-[414px] object-cover"
-                />
-                <div className="p-4 text-center space-y-2">
-                    <h3 className="text-lg font-semibold">Event Name {index + 1}</h3>
-                    <p className="text-md text-gray-400">Date: 25th March 2025</p>
-                    <p className="text-md text-white-400">Rs. 15,000</p>
-                </div>
+  {/* Event Posters with Details using react-slick */}
+  <div className="px-4 sm:px-8">
+    <Slider {...carouselSettings}>
+      {[EventPoster1, EventPoster2, EventPoster3, EventPoster4].map((poster, index) => (
+        <div key={index} className="px-4 focus:outline-none"> {/* Added consistent gap */}
+          <div className="w-[280px] sm:w-[335px] h-auto bg-[#1a1a1a] text-white rounded-lg shadow-lg overflow-hidden flex-shrink-0">
+            <img
+              src={poster}
+              alt={`Event ${index + 1}`}
+              className="w-full h-[250px] sm:h-[350px] object-cover" 
+            />
+            <div className="p-4 text-center space-y-2">
+              <h3 className="text-lg font-semibold">Event Name {index + 1}</h3>
+              <p className="text-md text-gray-400">Date: 25th March 2025</p>
+              <p className="text-md text-white-400">Rs. 15,000</p>
             </div>
-        ))}
-    </div>
+          </div>
+        </div>
+      ))}
+    </Slider>
+  </div>
 </div>
 
-
-<div className="bg-black w-full">
+      {/* Rest of your sections remain the same */}
+      <div className="bg-black w-full overflow-hidden"> {/* Added overflow-hidden */}
   {/* Section 1 */}
-  <div className="h-screen w-full flex flex-col justify-center items-center gap-4 md:flex-row md:justify-between py-4 md:items-center">
+  <div className="min-h-screen w-full flex flex-col justify-center items-center gap-8 md:flex-row md:justify-between md:items-center py-8 px-4 md:px-8 lg:px-12">
     {/* Text and Button (Left Side) */}
-    <div className="max-w-1/2 h-auto md:h-full relative left-6 lg:left-20  flex flex-col  justify-end ">
-      <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
+    <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-6 md:pl-8 lg:pl-12">
+      <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center md:text-left">
         Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
       </h1>
-      <button className="bg-white w-36 text-2xl text-black font-medium rounded-full shadow-md py-2 md:py-3 hover:bg-gray-200 transition h-12 ">
+      <button className="bg-white w-36 text-xl md:text-2xl text-black font-medium rounded-full shadow-md py-2 hover:bg-gray-200 transition h-12">
         Explore
       </button>
     </div>
     {/* Image */}
-    <div className="md:w-1/2 h-1/2 md:h-full">
-    <img src={Transfer} alt="Transfer" className=" max-w-full h-full rounded-[20px] ml-[100px] md:ml-20 " />
+    <div className="w-full md:w-1/2 flex justify-center">
+      <img 
+        src={Transfer} 
+        alt="Transfer" 
+        className="w-full max-w-md md:max-w-lg lg:max-w-xl rounded-[20px]" 
+      />
     </div>
   </div>
 
@@ -148,48 +215,53 @@ const Home = () => {
   <div className="h-12 md:h-16 bg-black"></div>
 
   {/* Section 2 (Reversed Layout) */}
-  <div className="min-h-screen flex flex-col-reverse items-center  md:flex-row md:items-center justify-evenly gap-6 md:gap-16 px-4 md:px-20 py-8 md:py-1  ">
-  {/* Image (Left Side) */}
-  <img src={Sell} alt="Sell" className="w-full max-w-[400px] h-auto" />
+  <div className="min-h-screen w-full flex flex-col-reverse md:flex-row justify-center items-center gap-8 md:gap-12 px-4 md:px-8 lg:px-12 py-8">
+    {/* Image (Left Side) */}
+    <div className="w-full md:w-1/2 flex justify-center">
+      <img 
+        src={Sell} 
+        alt="Sell" 
+        className="w-full max-w-md md:max-w-lg lg:max-w-xl" 
+      />
+    </div>
 
-  {/* Text and Button (Right Side - Center Aligned) */}
-  <div className="max-w-1/2 h-full relative flex flex-col  justify-end ">
-      <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
+    {/* Text and Button (Right Side) */}
+    <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-6 md:pr-8 lg:pr-12">
+      <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center md:text-left">
         Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
       </h1>
-      <button className="bg-white w-36 text-2xl  text-black font-medium rounded-full shadow-md py-2 md:py-3 hover:bg-gray-200 transition h-12 ">
+      <button className="bg-white w-36 text-xl md:text-2xl text-black font-medium rounded-full shadow-md py-2 hover:bg-gray-200 transition h-12">
         Explore
       </button>
     </div>
-</div>
-
-
+  </div>
 
   {/* Spacer */}
- 
+  <div className="h-12 md:h-16 bg-black"></div>
 
   {/* Section 3 */}
-  <div className="min-h-auto flex flex-col items-center md:flex-row md:items-end justify-evenly gap-6 md:gap-20 px-4 md:px-24 py-8 md:py-16  ">
-  {/* Text and Button (Left Side) */}
-  <div className="max-w-1/2 h-full relative md:left-20  flex flex-col  justify-end ">
-      <h1 className="text-white text-xl sm:text-2xl md:text-4xl">
+  <div className="min-h-screen w-full flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 px-4 md:px-8 lg:px-12 py-8">
+    {/* Text and Button (Left Side) */}
+    <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-6 md:pl-8 lg:pl-12">
+      <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center md:text-left">
         Last-minute change? <br /> No problem! <br /> Easily transfer your <br /> ticket to a friend!
       </h1>
-      <button className="bg-white w-36 text-2xl text-black font-medium rounded-full shadow-md py-2 md:py-3 hover:bg-gray-200 transition h-12 ">
+      <button className="bg-white w-36 text-xl md:text-2xl text-black font-medium rounded-full shadow-md py-2 hover:bg-gray-200 transition h-12">
         Explore
       </button>
     </div>
-  
-  {/* Image (Right Side - Adjusted Alignment) */}
-  <div className="flex justify-end w-full md:w-auto">
-    <img src={Group} alt="Group" className="w-full max-w-[750px] h-auto" />
+
+    {/* Image (Right Side) */}
+    <div className="w-full md:w-1/2 flex justify-center">
+      <img 
+        src={Group} 
+        alt="Group" 
+        className="w-full max-w-md md:max-w-lg lg:max-w-xl" 
+      />
+    </div>
   </div>
 </div>
-</div>
-
-
-
-
+      </div>
     </>
   );
 };
