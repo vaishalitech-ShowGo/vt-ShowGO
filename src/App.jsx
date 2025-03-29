@@ -10,7 +10,7 @@ import MembersAdded from "./pages/MembersAdded"
 import EventDetails from "./pages/EventDetails"
 import BookingConfirmation from "./pages/BookingConfirmation"
 import LoginPage from "./pages/LoginSignup"
-import AdminPanel from "./pages/AdminPanel";
+import AdminPanel from "../src/adminPanel/AdminPanel";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 function App() {
